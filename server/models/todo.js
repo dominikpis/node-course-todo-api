@@ -1,4 +1,4 @@
-var {mongoose} = require('../db/mongoose');
+var mongoose = require('mongoose');
 
 
 var Todo = mongoose.model('Todo', {
@@ -10,7 +10,7 @@ var Todo = mongoose.model('Todo', {
     },
     completed: {
         type: Boolean,
-        defalut: false
+        default: false
     },
     completedAt: {
         type: Number,
