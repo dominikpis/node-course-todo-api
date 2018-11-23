@@ -13,18 +13,18 @@ const todos = [{
     text: 'Second test todo'
 }];  
 
-beforeEach((done) => {
+/* beforeEach((done) => {
     Todo.deleteMany({}).then(() => {
         return Todo.insertMany(todos);
     }).then(() => done());
-});
+}); */
 
 describe('POST /todos', () => {
     it('should create a new todo', (done) => {
         var text = 'Test todo text';
 
         request(app)
-            .post('/todos')
+            .post('/todos.json')
             .send({ text })
             .expect(200)
             .expect((res) => {
@@ -44,7 +44,7 @@ describe('POST /todos', () => {
 
     it('should not create todo with invalid body data', (done) => {
         request(app)
-            .post('/todos')
+            .post('/todos.json')
             .send({})
             .expect(400)
             .end((err, res) => {
@@ -63,7 +63,7 @@ describe('POST /todos', () => {
 describe('GET /todos',()=>{
     it('should get all todos', (done)=>{
         request(app)
-            .get('/todos')
+            .get('/todos.json')
             .expect(200)
             .expect((res)=>{
                 expect(res.body.todos.length).toBe(2);
